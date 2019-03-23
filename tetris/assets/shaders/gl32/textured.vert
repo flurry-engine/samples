@@ -1,4 +1,4 @@
-#version 130
+#version 150
 
 attribute vec3 aPos;
 attribute vec4 aCol;

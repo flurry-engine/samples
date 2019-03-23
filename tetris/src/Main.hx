@@ -58,15 +58,15 @@ class Main extends Flurry
         _config.window.width  = 1600;
         _config.window.height = 900;
 
-        _config.renderer.backend = GLES;
+        _config.renderer.backend = GL32;
 
         _config.resources.preload.images.push({ id : 'assets/images/shapes.png' });
         _config.resources.preload.texts.push({ id : 'assets/images/shapes.atlas' });
         _config.resources.preload.shaders.push({
-            id    : 'assets/shaders/textured.json',
-            hlsl  : { vertex: 'assets/shaders/hlsl/textured.hlsl' , fragment: 'assets/shaders/hlsl/textured.hlsl' },
-            gl45  : { vertex: 'assets/shaders/gl45/textured.vert' , fragment: 'assets/shaders/gl45/textured.frag' },
-            webgl : { vertex: 'assets/shaders/webgl/textured.vert', fragment: 'assets/shaders/webgl/textured.frag' }
+            id   : 'assets/shaders/textured.json',
+            hlsl : { vertex: 'assets/shaders/hlsl/textured.hlsl', fragment: 'assets/shaders/hlsl/textured.hlsl' },
+            gl45 : { vertex: 'assets/shaders/gl45/textured.vert', fragment: 'assets/shaders/gl45/textured.frag' },
+            gl32 : { vertex: 'assets/shaders/gl32/textured.vert', fragment: 'assets/shaders/gl32/textured.frag' }
         });
 
         return _config;
