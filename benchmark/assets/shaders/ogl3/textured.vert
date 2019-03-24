@@ -1,11 +1,14 @@
 #version 330 core
 
-in vec3 aPos;
-in vec4 aCol;
-in vec2 aTex;
+layout (location = 0) in vec3 aPos;
+layout (location = 1) in vec4 aCol;
+layout (location = 2) in vec2 aTex;
 
-uniform mat4 projection;
-uniform mat4 view;
+layout (std140) uniform defaultMatrices
+{
+    mat4 projection;
+    mat4 view;
+};
 
 out vec4 Color;
 out vec2 TexCoord;
