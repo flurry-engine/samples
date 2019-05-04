@@ -6,6 +6,7 @@ import uk.aidanlee.flurry.api.resources.Resource.ImageResource;
 import uk.aidanlee.flurry.api.resources.Resource.ShaderResource;
 import uk.aidanlee.flurry.api.gpu.geometry.shapes.QuadGeometry;
 import uk.aidanlee.flurry.api.gpu.batcher.Batcher;
+import uk.aidanlee.flurry.api.gpu.shader.Uniforms;
 import uk.aidanlee.flurry.api.gpu.camera.OrthographicCamera;
 import uk.aidanlee.flurry.modules.imgui.ImGuiImpl;
 import imgui.ImGui;
@@ -67,9 +68,13 @@ class Main extends Flurry
 
     override function onReady()
     {
+        var shader = resources.get('std-shader-textured.json', ShaderResource);
+        shader.uniforms.vector4.set('cvec', new Vector(0, 0, 0, 0));
+        shader.uniforms.float.set('alpha', 1);
+
         imgui   = new ImGuiImpl(this);
         camera  = new OrthographicCamera(1600, 900);
-        batcher = renderer.createBatcher({ shader : resources.get('std-shader-textured.json', ShaderResource), camera : camera });
+        batcher = renderer.createBatcher({ shader : shader, camera : camera });
 
         // Add some sprites.
         var largeHaxe = 'assets/images/haxe.png';
@@ -78,11 +83,17 @@ class Main extends Flurry
         sprites  = [];
         vectors  = [];
         numLogos = 10000;
+        
+        var unif = new Uniforms();
+        unif.vector4.set('cvec', new Vector(0, 0, 0, 0));
+        unif.float.set('alpha', 0.5);
+
         for (i in 0...numLogos)
         {
             var sprite = new QuadGeometry({
-                textures : [ resources.get(largeHaxe, ImageResource) ],
-                batchers : [ batcher ]
+                textures   : [ resources.get(largeHaxe, ImageResource) ],
+                batchers   : [ batcher ],
+                uniforms   : unif
             });
             sprite.scale.set_xy(0.5, 0.5);
             sprite.origin.set_xy(75, 75);
@@ -95,8 +106,7 @@ class Main extends Flurry
         var logo = new QuadGeometry({
             textures   : [ resources.get(smallHaxe, ImageResource) ],
             batchers   : [ batcher ],
-            depth      : 2,
-            unchanging : true
+            depth      : 2
         });
         logo.origin.set_xy(resources.get(smallHaxe, ImageResource).width / 2, resources.get(smallHaxe, ImageResource).height / 2);
         logo.position.set_xy(1600 / 2, 900 / 2);
@@ -104,16 +114,18 @@ class Main extends Flurry
 
     override function onUpdate(_dt : Float)
     {
+        camera.viewport.set(0, 0, display.width, display.height);
+
         // Make all of our haxe logos bounce around the screen.
         for (i in 0...numLogos)
         {
             sprites[i].position.x += (vectors[i].x * 1000) * _dt;
             sprites[i].position.y += (vectors[i].y * 1000) * _dt;
 
-            if (sprites[i].position.x > 1600 + sprites[i].origin.x) vectors[i].x = -vectors[i].x;
-            if (sprites[i].position.x <     0) vectors[i].x = -vectors[i].x;
-            if (sprites[i].position.y >  900 + sprites[i].origin.y) vectors[i].y = -vectors[i].y;
-            if (sprites[i].position.y <    0)  vectors[i].y = -vectors[i].y;
+            if (sprites[i].position.x > 1600) vectors[i].x = -vectors[i].x;
+            if (sprites[i].position.x <    0) vectors[i].x = -vectors[i].x;
+            if (sprites[i].position.y >  900) vectors[i].y = -vectors[i].y;
+            if (sprites[i].position.y <    0) vectors[i].y = -vectors[i].y;
         }
     }
 

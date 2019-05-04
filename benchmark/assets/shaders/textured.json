@@ -1,4 +1,22 @@
 {
     "textures" : [ "defaultTexture" ],
-    "blocks"   : [ ]
+    "blocks"   : [
+        {
+            "name" : "defaultMatrices",
+            "bind" : 0,
+            "vals" : [
+                { "type" : "Matrix4", "name" : "projection" },
+                { "type" : "Matrix4", "name" : "view" },
+                { "type" : "Matrix4", "name" : "models" }
+            ]
+        },
+        {
+            "name" : "colours",
+            "bind" : 1,
+            "vals" : [
+                { "type": "Vector4", "name" : "cvec" },
+                { "type": "Float", "name" : "alpha" }
+            ]
+        }
+    ]
 }
