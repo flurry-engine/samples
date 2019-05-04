@@ -1,4 +1,14 @@
 {
     "textures" : [ "defaultTexture" ],
-    "blocks"   : [ ]
+    "blocks"   : [
+        {
+            "name" : "defaultMatrices",
+            "bind" : 0,
+            "vals" : [
+                { "type" : "Matrix4", "name" : "projection" },
+                { "type" : "Matrix4", "name" : "view" },
+                { "type" : "Matrix4", "name" : "models" }
+            ]
+        }
+    ]
 }

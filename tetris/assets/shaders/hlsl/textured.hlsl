@@ -5,10 +5,16 @@ SamplerState defaultSampler : register(s0);
 
 // cbuffer required in all HLSL shaders.
 // Contains the two projection matrices for transforming input vertices
-cbuffer requiredMatrices : register(b0)
+cbuffer defaultMatrices : register(b0)
 {
 	matrix projection;
 	matrix view;
+};
+
+cbuffer colours : register(b1)
+{
+	vector cvec;
+	float4 alpha;
 };
 
 struct VOut
