@@ -1,4 +1,3 @@
-
 // Default texture and sampler. This is the texture of the draw command.
 Texture2D    defaultTexture : register(t0);
 SamplerState defaultSampler : register(s0);
@@ -13,8 +12,8 @@ cbuffer defaultMatrices : register(b0)
 
 cbuffer colours : register(b1)
 {
-	vector cvec;
-	float4 alpha;
+	float4 cvec;
+	float alpha;
 };
 
 struct VOut
@@ -30,7 +29,7 @@ VOut VShader(float3 position : POSITION, float4 color : COLOR, float2 texcoord :
 
 	output.position = mul(view      , float4(position, 1.0));
 	output.position = mul(projection, output.position);
-	output.color    = color;
+	output.color    = float4(color.r + cvec.r, color.g + cvec.g, color.b + cvec.b, color.a * alpha);
 	output.texcoord = texcoord;
 
 	// Hack to convert between openGL's -1 to 1 clip space and DX's 0 to 1
