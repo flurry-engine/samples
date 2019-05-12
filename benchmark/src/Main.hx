@@ -93,7 +93,8 @@ class Main extends Flurry
             var sprite = new QuadGeometry({
                 textures   : [ resources.get(largeHaxe, ImageResource) ],
                 batchers   : [ batcher ],
-                uniforms   : unif
+                uniforms   : unif,
+                uploadType : Stream
             });
             sprite.scale.set_xy(0.5, 0.5);
             sprite.origin.set_xy(75, 75);
@@ -106,7 +107,8 @@ class Main extends Flurry
         var logo = new QuadGeometry({
             textures   : [ resources.get(smallHaxe, ImageResource) ],
             batchers   : [ batcher ],
-            depth      : 2
+            depth      : 2,
+            uploadType : Stream
         });
         logo.origin.set_xy(resources.get(smallHaxe, ImageResource).width / 2, resources.get(smallHaxe, ImageResource).height / 2);
         logo.position.set_xy(1600 / 2, 900 / 2);
