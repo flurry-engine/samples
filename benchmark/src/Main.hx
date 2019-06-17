@@ -9,8 +9,7 @@ import uk.aidanlee.flurry.api.gpu.batcher.Batcher;
 import uk.aidanlee.flurry.api.gpu.shader.Uniforms;
 import uk.aidanlee.flurry.api.gpu.camera.OrthographicCamera;
 import uk.aidanlee.flurry.modules.imgui.ImGuiImpl;
-import imgui.ImGui;
-import imgui.util.ImVec2;
+import imgui.NativeImGui;
 
 typedef UserConfig = {};
 
@@ -142,32 +141,32 @@ class Main extends Flurry
     function uiShowRenderStats()
     {
         var distance       = 10;
-        var windowPos      = ImVec2.create(ImGui.getIO().displaySize.x - distance, distance);
+        var windowPos      = ImVec2.create(NativeImGui.getIO().displaySize.x - distance, distance);
         var windowPosPivot = ImVec2.create(1, 0);
 
-        ImGui.setNextWindowPos(windowPos, ImGuiCond.Always, windowPosPivot);
-        ImGui.setNextWindowBgAlpha(0.3);
-        if (ImGui.begin('Render Stats', NoMove | NoTitleBar | NoResize | AlwaysAutoResize | NoSavedSettings | NoFocusOnAppearing | NoNav))
+        NativeImGui.setNextWindowPos(windowPos, ImGuiCond.Always, windowPosPivot);
+        NativeImGui.setNextWindowBgAlpha(0.3);
+        if (NativeImGui.begin('Render Stats', null, ImGuiWindowFlags.NoMove | ImGuiWindowFlags.NoTitleBar | ImGuiWindowFlags.NoResize | ImGuiWindowFlags.AlwaysAutoResize | ImGuiWindowFlags.NoSavedSettings | ImGuiWindowFlags.NoFocusOnAppearing | ImGuiWindowFlags.NoNav))
         {
-            ImGui.text('total batchers   ${renderer.stats.totalBatchers}');
-            ImGui.text('total geometry   ${renderer.stats.totalGeometry}');
-            ImGui.text('total vertices   ${renderer.stats.totalVertices}');
-            ImGui.text('dynamic draws    ${renderer.stats.dynamicDraws}');
-            ImGui.text('unchanging draws ${renderer.stats.unchangingDraws}');
+            NativeImGui.text('total batchers   ${renderer.stats.totalBatchers}');
+            NativeImGui.text('total geometry   ${renderer.stats.totalGeometry}');
+            NativeImGui.text('total vertices   ${renderer.stats.totalVertices}');
+            NativeImGui.text('dynamic draws    ${renderer.stats.dynamicDraws}');
+            NativeImGui.text('unchanging draws ${renderer.stats.unchangingDraws}');
 
-            ImGui.text('');
-            ImGui.text('state changes');
-            ImGui.separator();
+            NativeImGui.text('');
+            NativeImGui.text('state changes');
+            NativeImGui.separator();
 
-            ImGui.text('target           ${renderer.stats.targetSwaps}');
-            ImGui.text('shader           ${renderer.stats.shaderSwaps}');
-            ImGui.text('texture          ${renderer.stats.textureSwaps}');
-            ImGui.text('viewport         ${renderer.stats.viewportSwaps}');
-            ImGui.text('blend            ${renderer.stats.blendSwaps}');
-            ImGui.text('scissor          ${renderer.stats.scissorSwaps}');
+            NativeImGui.text('target           ${renderer.stats.targetSwaps}');
+            NativeImGui.text('shader           ${renderer.stats.shaderSwaps}');
+            NativeImGui.text('texture          ${renderer.stats.textureSwaps}');
+            NativeImGui.text('viewport         ${renderer.stats.viewportSwaps}');
+            NativeImGui.text('blend            ${renderer.stats.blendSwaps}');
+            NativeImGui.text('scissor          ${renderer.stats.scissorSwaps}');
         }
 
-        ImGui.end();
+        NativeImGui.end();
     }
 
     /**
