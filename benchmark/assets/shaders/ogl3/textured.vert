@@ -8,6 +8,7 @@ layout (std140) uniform defaultMatrices
 {
     mat4 projection;
     mat4 view;
+    mat4 model;
 };
 
 layout (std140) uniform colours
@@ -21,7 +22,7 @@ out vec2 TexCoord;
 
 void main()
 {
-    gl_Position = projection * view * vec4(aPos, 1.0);
+    gl_Position = projection * view * model * vec4(aPos, 1.0);
     Color       = vec4(aCol.r + cvec.r, aCol.g + cvec.g, aCol.b + cvec.b, aCol.a * alpha);
     TexCoord    = aTex;
 }

@@ -8,6 +8,7 @@ cbuffer defaultMatrices : register(b0)
 {
 	matrix projection;
 	matrix view;
+	matrix model;
 };
 
 cbuffer colours : register(b1)
@@ -27,7 +28,8 @@ VOut VShader(float3 position : POSITION, float4 color : COLOR, float2 texcoord :
 {
 	VOut output;
 
-	output.position = mul(view      , float4(position, 1.0));
+	output.position = mul(model     , float4(position, 1.0));
+	output.position = mul(view      , output.position);
 	output.position = mul(projection, output.position);
 	output.color    = float4(color.r + cvec.r, color.g + cvec.g, color.b + cvec.b, color.a * alpha);
 	output.texcoord = texcoord;

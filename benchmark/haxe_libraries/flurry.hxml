@@ -1,5 +1,5 @@
 -D flurry=0.0.1
-# @install: lix --silent download "gh://github.com/flurry-engine/flurry#745cb7436ee39be612339b19673ea991471b023e" into flurry/0.0.1/github/745cb7436ee39be612339b19673ea991471b023e
+# @install: lix --silent download "gh://github.com/flurry-engine/flurry#d4cbed669ff109740a85e105d4692b67cc9d865b" into flurry/0.0.1/github/d4cbed669ff109740a85e105d4692b67cc9d865b
 -lib hxcpp
 -lib snow
 -lib format
@@ -15,4 +15,4 @@
 -lib linc_stb
 -lib linc_timestamp
 -lib linc_directx
--cp ${HAXE_LIBCACHE}/flurry/0.0.1/github/745cb7436ee39be612339b19673ea991471b023e/src
+-cp ${HAXE_LIBCACHE}/flurry/0.0.1/github/d4cbed669ff109740a85e105d4692b67cc9d865b/src
