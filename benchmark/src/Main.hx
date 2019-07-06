@@ -71,7 +71,7 @@ class Main extends Flurry
         shader.uniforms.vector4.set('cvec', new Vector(0, 0, 0, 0));
         shader.uniforms.float.set('alpha', 1);
 
-        imgui   = new ImGuiImpl(this);
+        imgui   = new ImGuiImpl(events, display, resources, input, renderer);
         camera  = new OrthographicCamera(1600, 900);
         batcher = renderer.createBatcher({ shader : shader, camera : camera });
 
